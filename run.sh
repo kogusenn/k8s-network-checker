@@ -24,8 +24,7 @@ do
       fi
 
       echo -n "[DNS] - ${service} "
-      dns_a_record=$(dig ${service#*/} +short)
-      if [ "$dns_a_record" == "$pod_ip" ]
+      if host ${service#*/}.$namespace
       then
         echo "[OK]"
       else
