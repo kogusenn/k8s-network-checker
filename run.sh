@@ -66,7 +66,7 @@ do
         do
           for pod_port in ${pod_port_list[@]}
           do
-            pod_name=$(kubectl get po -n ${namespace} -o wide | grep -v Error | grep $pod_ip | awk '{print $1}')
+            pod_name=$(kubectl get po -n ${namespace} -o wide | grep -v Error | grep " $pod_ip " | awk '{print $1}')
             echo -n "[POD CONNECT] - ${namespace}/${pod_name} (${pod_ip}:${pod_port}) "
             if nc -z -w 1 $pod_ip $pod_port > /dev/null
             then
