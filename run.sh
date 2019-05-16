@@ -6,7 +6,7 @@ set -e
 
 namespaces=$(kubectl get namespaces)
 
-while sleep $INTERVAL
+while true
 do
   echo "`date` === Network check started"
   for namespace in ${namespaces[@]}
@@ -34,4 +34,5 @@ do
     done
   done
   echo "`date` === Done"
+  sleep $INTERVAL
 done
