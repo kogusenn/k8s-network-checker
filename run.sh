@@ -18,6 +18,8 @@ do
       service_ip=$(echo $service | awk '{print $2}')
       service_port_list=$(echo $service | awk '{print $3}' | sed 's/,/ /g')
 
+      #
+      # Check service connectivity
       if [ "$service_ip" != "None" ]
       then
         endpoint=$(kubectl get ep -n $namespace $service_name --no-headers | awk '{print $2}')
@@ -36,6 +38,8 @@ do
         fi
       fi
 
+      #
+      # Check service dns resolution
       if [ "$service_name" != "" ]
       then
         echo -n "[DNS] - ${namespace}/${service_name} "
@@ -48,6 +52,8 @@ do
       fi
     done <<< "$service_list"
 
+    #
+    # Check pod connectivity
     endpoint_list=$(kubectl get ep -n ${namespace} -o custom-columns='NAME:.metadata.name,IP(S):.subsets[*].addresses[*].ip,PORT(S):.subsets[*].ports[*].port' --no-headers)
     while read endpoint
     do
