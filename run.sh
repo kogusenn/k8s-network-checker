@@ -2,8 +2,6 @@
 
 INTERVAL=${INTERVAL:-600}
 
-set -e
-
 namespaces=$(kubectl get namespaces -o custom-columns='NAME:.metadata.name' --no-headers 2>/dev/null)
 
 while true
