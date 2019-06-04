@@ -64,7 +64,7 @@ do
         index=0
         for pod_ip in ${pod_ip_list[@]}
         do
-          pod_name=${pod_name_list[$count]}
+          pod_name=${pod_name_list[$index]}
           index=$((index+1))
           for pod_port in ${pod_port_list[@]}
           do
