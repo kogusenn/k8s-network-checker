@@ -64,8 +64,8 @@ do
         index=0
         for pod_ip in ${pod_ip_list[@]}
         do
-          pod_name=${pod_name_list[$index]}
           index=$((index+1))
+          pod_name=$(echo ${pod_name_list} | cut -d ' ' -f $index)
           for pod_port in ${pod_port_list[@]}
           do
             pod_host_ip=$(kubectl get po -n ${namespace} ${pod_name} -o jsonpath='{.status.hostIP}' 2>/dev/null)
